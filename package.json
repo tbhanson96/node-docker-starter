@@ -1,0 +1,32 @@
+{
+  "name": "docker-starter",
+  "version": "1.0.0",
+  "description": "Nodejs app template",
+  "main": "main.js",
+  "scripts": {
+    "build": "tsc",
+    "build:prod": "tsc -p tsconfig.prod.json",
+    "start": "ts-node main.ts",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "docker-build": "docker build --build-arg NODE_VERSION=$(cat .nvmrc | tr / -) -t $npm_package_name  .",
+    "package": "npm run build && npm run docker-build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tbhanson96/node-docker-starter.git"
+  },
+  "author": "Tim Hanson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tbhanson96/node-docker-starter/issues"
+  },
+  "homepage": "https://github.com/tbhanson96/node-docker-starter#readme",
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.3",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
+  }
+}
