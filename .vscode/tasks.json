@@ -1,0 +1,27 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+	//   {
+	// 	"type": "shell",
+	// 	"command": "docker",
+	// 	"args": ["rm", "vscode-debug-container", "||", "true"],
+	// 	"label": "docker-clean"
+    //   },
+	  {
+		"type": "docker-run",
+		"label": "docker-start",
+		// "dependsOn": ["docker-clean"],
+		"platform": "node",
+		"dockerRun": {
+			"containerName": "vscode-debug-container",
+			"image": "$(grep -Po '\"name\": *\"\\K[^\"]*' ${workspaceRoot}/package.json)",
+			"command": "npm run start:debug"	
+		},
+		"node": {
+			"enableDebugging": true,
+			"inspectPort": 9229,
+		}
+	  },
+	]
+  }
+  

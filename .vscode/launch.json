@@ -2,7 +2,33 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch",
+            "type": "docker",
+            "name": "Debug Docker",
+            "platform": "node",
+            "request": "launch",
+            "preLaunchTask": "docker-start",
+            "node": {
+                "remoteRoot": "/opt/app",
+                "localRoot": "${workspaceFolder}",
+                "sourceMaps": true,
+                "port": 9229,
+                "stopOnEntry": true,
+            }
+        },
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "Debug Tests",
+            "runtimeExecutable": "npm",
+            "cwd": "${workspaceRoot}",
+            "runtimeArgs": [
+                "run",
+                "test:debug"
+            ],
+            "port": 9229
+        },
+        {
+            "name": "Debug",
             "type": "node",
             "request": "launch",
             "runtimeArgs": ["--nolazy", "-r", "ts-node/register/transpile-only"],

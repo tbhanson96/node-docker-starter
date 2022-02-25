@@ -5,7 +5,8 @@ RUN mkdir -p /opt/app
 WORKDIR /opt/app
 
 COPY package*.json ./
-COPY dist ./
 RUN npm install
+COPY dist ./dist
+COPY src ./src
 
-CMD [ "node", "main.js" ]
+CMD [ "npm", "run", "start:prod" ]
