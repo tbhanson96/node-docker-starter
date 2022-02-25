@@ -71,5 +71,6 @@ jobs:
       - name: Build image
         run: npm run package
       
-      - run: docker image tag docker-starter:latest ghcr.io/tbhanson96/docker-starter:latest
-      - run: docker image push ghcr.io/tbhanson96/docker-starter:latest
+      - name: Deploy image
+        run: npm run deploy
+      

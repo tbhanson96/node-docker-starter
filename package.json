@@ -9,8 +9,11 @@
     "start": "ts-node main.ts",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "docker-build": "docker build --build-arg NODE_VERSION=$(cat .nvmrc | tr / -) -t $npm_package_name  .",
-    "package": "npm run build && npm run docker-build"
+    "docker:build": "docker build --build-arg NODE_VERSION=$(cat .nvmrc) -t $npm_package_name  .",
+    "docker:tag": "docker image tag $npm_package_name:latest ghcr.io/tbhanson96/$npm_package_name:latest",
+    "docker:push": "docker image push ghcr.io/tbhanson96/$npm_package_name:latest",
+    "package": "npm run build && npm run docker:build",
+    "deploy": "npm run docker:tag && npm run docker:push"
   },
   "repository": {
     "type": "git",
