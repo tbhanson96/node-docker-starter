@@ -7,6 +7,5 @@ WORKDIR /opt/app
 COPY package*.json ./
 RUN npm install
 COPY dist ./dist
-COPY src ./src
 
 CMD [ "npm", "run", "start:prod" ]

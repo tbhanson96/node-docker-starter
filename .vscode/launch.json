@@ -2,18 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "docker",
+            "type": "node",
             "name": "Debug Docker",
-            "platform": "node",
-            "request": "launch",
-            "preLaunchTask": "docker-start",
-            "node": {
-                "remoteRoot": "/opt/app",
-                "localRoot": "${workspaceFolder}",
-                "sourceMaps": true,
-                "port": 9229,
-                "stopOnEntry": true,
-            }
+            "request": "attach",
+            "preLaunchTask": "start-docker",
+            "address": "localhost",
+            "remoteRoot": "/opt/app",
+            "localRoot": "${workspaceFolder}",
+            "sourceMapPathOverrides": {
+                "/opt/app/*": "${workspaceFolder}/*"
+            },
+            "port": 9229,
+            "timeout": 30000
         },
         {
             "type": "pwa-node",
@@ -31,12 +31,14 @@
             "name": "Debug",
             "type": "node",
             "request": "launch",
-            "runtimeArgs": ["--nolazy", "-r", "ts-node/register/transpile-only"],
             "runtimeVersion": "16",
-            "args": ["src/main.ts"],
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "start:debug"],
             "cwd": "${workspaceRoot}",
-            "internalConsoleOptions": "openOnSessionStart",
-            "skipFiles": ["<node_internals>/**", "node_modules/**"]
+            "outFiles": [
+                "${workspaceFolder}/dist/*.js",
+                "!**/node_modules/**"
+            ]
         }
     ]
 }

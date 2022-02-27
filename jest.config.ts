@@ -1,6 +1,5 @@
-import type {Config} from '@jest/types';
+import type { Config } from '@jest/types';
 
-// Sync object
 const config: Config.InitialOptions = {
     preset: 'ts-jest',
     testEnvironment: 'node',
@@ -12,12 +11,10 @@ const config: Config.InitialOptions = {
     testRegex: '/test/.*\\.test\\.ts$',
     moduleFileExtensions: ['ts', 'js'],
     
-    //rootDir: '.',
-    roots: ['<rootDir>/test'],
-    
     // Coverage setup.
     collectCoverageFrom: ['src/**/*.ts'],
     coverageDirectory: 'coverage',
     coverageReporters: ['text-summary', 'text', 'cobertura'],
 };
+
 export default config;
